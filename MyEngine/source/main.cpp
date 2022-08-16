@@ -221,7 +221,6 @@ int main(/*int argc, char const *argv[]*/)
         {
             processInput(window);
             glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-            
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             float currentFrame = glfwGetTime();
             deltaTime = currentFrame - lastFrame;
@@ -231,17 +230,15 @@ int main(/*int argc, char const *argv[]*/)
             glBindTexture(GL_TEXTURE_2D, texture1);
             glActiveTexture(GL_TEXTURE1);
             glBindTexture(GL_TEXTURE_2D, texture2);
+
             ourShader.use();
-            
             glm::mat4 projection;
             projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
             ourShader.setMat4("projection", projection);
-
             glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
             ourShader.setMat4("view", view);
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, lightPos);
-            //model = glm::scale(model, glm::vec3(0.2f));
             ourShader.setMat4("model", model);
             glBindVertexArray(VAO);
             glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -255,9 +252,26 @@ int main(/*int argc, char const *argv[]*/)
             lightingShader.setMat4("model", model);
             lightingShader.setMat4("view", view);
             lightingShader.setMat4("projection", projection);
-            
+            lightingShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
+            lightingShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+            lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+            lightingShader.setFloat("material.shininess", 32.0f);
+
+            glm::vec3 lightColor;
+            lightColor.x = sin(glfwGetTime() * 2.0f);
+            lightColor.y = sin(glfwGetTime() * 0.7f);
+            lightColor.z = sin(glfwGetTime() * 1.3f);
+
+            glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
+            glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);
+
+            lightingShader.setVec3("light.ambient", ambientColor);
+            lightingShader.setVec3("light.diffuse", diffuseColor);
+            lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+
             glBindVertexArray(lightVAO);
             glDrawArrays(GL_TRIANGLES, 0, 36);
+
             //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
             glfwSwapBuffers(window);
