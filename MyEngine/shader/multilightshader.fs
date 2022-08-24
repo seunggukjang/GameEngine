@@ -1,18 +1,15 @@
 #version 460 core
-struct Material {
-    //vec3 ambient;
-    //vec3 diffuse;
-    sampler2D diffuse;
-    sampler2D specular;
-    float shininess;
-}; 
 struct DirLight {
     vec3 direction;
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
 };
-
+struct Material {
+    sampler2D diffuse;
+    sampler2D specular;
+    float shininess;
+}; 
 struct PointLight {    
     vec3 position;
     
@@ -26,7 +23,6 @@ struct PointLight {
 };  
 #define NR_POINT_LIGHTS 4  
 uniform PointLight pointLights[NR_POINT_LIGHTS];
-
 struct Light {
     vec3 direction;
     vec3 position;
@@ -56,7 +52,6 @@ uniform vec3 lightPos;
 uniform vec3 viewPos;
 
 uniform DirLight dirLight;
-uniform Light spotLight;
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);  
