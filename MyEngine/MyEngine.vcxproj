@@ -23,8 +23,11 @@
     <ClInclude Include="header\Engine.h" />
     <ClInclude Include="header\Logger.h" />
     <ClInclude Include="include\Shader.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="source\Engine.cpp" />
     <ClCompile Include="source\glad.c" />
     <ClCompile Include="source\Logger.cpp" />
