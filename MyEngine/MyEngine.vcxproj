@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="source\Engine.cpp" />
     <ClCompile Include="source\glad.c" />
     <ClCompile Include="source\Logger.cpp" />
@@ -100,13 +101,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\include;C:\Graphics\Tools;C:\Graphics\Tools\glfw\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\include;C:\Graphics\Tools\Assimp\include;C:\Graphics\Tools;C:\Graphics\Tools\glfw\include;$(IncludePath)</IncludePath>
     <SourcePath>$(ProjectDir)\source;$(SourcePath)</SourcePath>
     <LibraryPath>C:\Graphics\Tools\glfw_64\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)\include;C:\Graphics\Tools;C:\Graphics\Tools\glfw_64\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\include;C:\Graphics\Tools\Assimp\include;C:\Graphics\Tools;C:\Graphics\Tools\glfw_64\include;$(IncludePath)</IncludePath>
     <SourcePath>$(ProjectDir)\source;$(SourcePath)</SourcePath>
     <LibraryPath>C:\Graphics\Tools\glfw_64\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
